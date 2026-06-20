@@ -133,8 +133,8 @@ public class ReservationManager implements AutoCloseable {
         connection.setAutoCommit(false);
 
         try {
-            String sql = "UPDATE inventory SET reserved_quantity = reserved_quantity + ?, updated_at = CURRENT_TIMESTAMP " +
-                    "WHERE warehouse_id = ? AND product_id = ?";
+            String sql = "UPDATE inventory SET reserved_quantity = reserved_quantity + ?, " +
+                    "updated_at = CURRENT_TIMESTAMP " + "WHERE warehouse_id = ? AND product_id = ?";
 
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setBigDecimal(1, quantity);
@@ -169,8 +169,8 @@ public class ReservationManager implements AutoCloseable {
         connection.setAutoCommit(false);
 
         try {
-            String sql = "UPDATE inventory SET reserved_quantity = reserved_quantity - ?, updated_at = CURRENT_TIMESTAMP " +
-                    "WHERE warehouse_id = ? AND product_id = ? AND reserved_quantity >= ?";
+            String sql = "UPDATE inventory SET reserved_quantity = reserved_quantity - ?, updated_at = " +
+                    "CURRENT_TIMESTAMP WHERE warehouse_id = ? AND product_id = ? AND reserved_quantity >= ?";
 
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setBigDecimal(1, quantity);

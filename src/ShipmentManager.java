@@ -441,7 +441,8 @@ public class ShipmentManager implements AutoCloseable {
     }
 
     private BigDecimal getAvailableQuantity(int warehouseId, int productId) throws SQLException {
-        String sql = "SELECT COALESCE(quantity - reserved_quantity, 0) as available FROM inventory WHERE warehouse_id = ? AND product_id = ?";
+        String sql = "SELECT COALESCE(quantity - reserved_quantity, 0) as available FROM inventory" +
+                " WHERE warehouse_id = ? AND product_id = ?";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, warehouseId);

@@ -394,7 +394,7 @@ public class StockControlManager implements AutoCloseable {
         return zeroStocks;
     }
 
-    public void exportStockToCSV(String filename) throws SQLException {
+    public void exportStockToFile(String filename) throws SQLException {
         List<TotalStockByProduct> stocks = getAllTotalStocks();
 
         if (stocks.isEmpty()) {
@@ -691,7 +691,7 @@ public class StockControlManager implements AutoCloseable {
                         filename = "stock_report_" + System.currentTimeMillis() + ".txt";
                     }
                     try {
-                        exportStockToCSV(filename);
+                        exportStockToFile(filename);
                     } catch (SQLException e) {
                         System.err.println("Ошибка БД: " + e.getMessage());
                     }
